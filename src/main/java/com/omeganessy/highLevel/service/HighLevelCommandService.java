@@ -3,8 +3,6 @@ package com.omeganessy.highLevel.service;
 import com.omeganessy.entity.Event;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpHost;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.index.IndexRequest;
@@ -28,7 +26,6 @@ import java.util.List;
 @Log4j2
 public class HighLevelCommandService {
     private static final String INDEX_NAME = "events";
-    private static final Logger log = LogManager.getLogger(HighLevelCommandService.class);
     private final RestHighLevelClient client = new RestHighLevelClient(
             RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
@@ -39,9 +36,9 @@ public class HighLevelCommandService {
 
         IndexRequest indexRequest = new IndexRequest(INDEX_NAME)
                 .source(json, XContentType.JSON);
-
         IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
-        log.info("Document indexed with id: {}", indexResponse.getId());
+
+        log.info("message_id [uuid app_name=elastic-search app_version=1.0.0-SNAPSHOT] process_id component_name: Document indexed with id: {}", indexResponse.getId());
         System.out.println("Document indexed with id: " + indexResponse.getId());
         return indexResponse;
     }
