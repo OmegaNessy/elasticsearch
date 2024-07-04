@@ -11,15 +11,15 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        LowLevelCommandService lowLevelCommandService = new LowLevelCommandService();
+//        LowLevelCommandService lowLevelCommandService = new LowLevelCommandService();
         HighLevelCommandService highLevelCommandService = new HighLevelCommandService();
-//        highLevelCommandService.storeEvent(generateEvent());
-        lowLevelCommandService.bulkDeleteEventsByTitle("Tech Talk on AI");
+        highLevelCommandService.storeEvent(generateEvent());
+//        lowLevelCommandService.bulkDeleteEventsByTitle("Tech Talk on AI");
     }
 
     private static Event generateEvent(){
         Event event = new Event();
-        event.setTitle("Tech Talk on AI");
+        event.setTitle("Tech Talk on AI 2.0");
         event.setEventType("tech-talk");
         event.setDateTime("2024-02-09");
         event.setPlace("Conference Room 1");
